@@ -45,6 +45,8 @@
 
 clear
 
+localdir=$( pwd )
+
 echo $lightpurple$bold
 echo -e "                /     ___  ____  ____  _  _      |"
 echo -e "          /          / __)(  __)(  _ \/ )( \         |"
@@ -74,7 +76,7 @@ then
   echo -e "File Path / Name:"
   echo -e "Example: /root/Desktop/somefile.anyformat"
   read -p "$lightred$HOSTNAME$lightgreen:$lightred$USERNAME$lightyellow \/$lightpurple Ceph$lightyellow :> " file2crypt
-  if [ -d $file2crypt ]
+  if [ -e $file2crypt ]
   then
     echo -e "$lightgreen[i]The file seems to exist."$normal
   else
@@ -99,8 +101,9 @@ then
   gpg2 --encrypt --recipient $clientkey -- $file2crypt
   echo -e $lightgreen"[✔]Finish encrypting!"
   sleep 1
+  echo -e $lightgreen"[✔]The format is modified, please change it back to normal and boom!!"
   read -p $lightyellow"Press any keys to continue ..."$normal
-  procep
+  cd $locadir/ && ./ceph.sh
 fi
 
 if [ $cephmenu == 2 ]
@@ -118,7 +121,7 @@ then
   echo -e "File Path / Do not include the filename, make sure to put "/" at the end of the path:"
   echo -e "Example: /root/Desktop/"
   read -p "$lightred$HOSTNAME$lightgreen:$lightred$USERNAME$lightyellow \/$lightpurple Ceph$lightyellow :> " filepath
-  if [ -d $filepath ]
+  if [ -e $filepath ]
   then
     echo -e "$lightgreen[i]The path seems to exist."$normal
   else
@@ -177,21 +180,15 @@ then
     7) encryption="des-ede3" ;;
   esac
   openssl $encryption -a -salt -in $filename -out $filename
+  echo -e $lightgreen"[✔]Finish encrypting!"
+  sleep 1
+  echo -e $lightgreen"[✔]The format is modified, please change it back to normal and boom!!"
+  read -p $lightyellow"Press any keys to continue ..."$normal
+  cd $locadir/ && ./ceph.sh
 fi
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+if [ $cephmenu == "back" ]; then
+  cd $localdir/ && ./procepmenu.sh
 fi
  
 
@@ -207,6 +204,31 @@ fi
 
 
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 
 
 
